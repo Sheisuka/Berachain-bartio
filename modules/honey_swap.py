@@ -33,7 +33,8 @@ class HoneySwap(modules.module.Module):
                 'maxPriorityFeePerGas': 100000000,
             })
             signed_tx = self.w3.eth.account.sign_transaction(tx, private_key=account.key)
-            self.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
+            tx_hash = self.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
+            self.w3.eth.wait_for_transaction_receipt(tx_hash)
         
         _approve()
         _mint()
@@ -62,7 +63,8 @@ class HoneySwap(modules.module.Module):
                 'maxPriorityFeePerGas': 100000000,
             })
             signed_tx = self.w3.eth.account.sign_transaction(tx, private_key=account.key)
-            self.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
+            tx_hash = self.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
+            self.w3.eth.wait_for_transaction_receipt(tx_hash)
 
         _approve()
         _mint()
