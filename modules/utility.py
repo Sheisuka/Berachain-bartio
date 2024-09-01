@@ -1,8 +1,8 @@
+import web3
+
 import typing
 import json
 import pathlib
-
-import web3
 
 
 def _load_abi(abi_path: str) -> typing.Any:
