@@ -11,7 +11,7 @@ class HoneySwap(modules.module.Module):
         super().__init__(w3, settings.HONEYSWAP_ADDRESS, settings.HONEYSWAP_ABI_PATH)
 
     def mint(self, account: web3.Account, asset: str, amount: int) -> None:
-        @modules.handlers.error_handler
+        @modules.handlers.exception_handler
         def _approve():
             usdc_contract = modules.utility._get_contract(self.w3, settings.USDC_ABI_PATH, settings.USDC_ADDRESS)
             if usdc_contract.functions.allowance(account.address, self.address).call() >= amount:
@@ -24,7 +24,7 @@ class HoneySwap(modules.module.Module):
             })
             self._send_tx_and_wait(account, tx)
 
-        @modules.handlers.error_handler
+        @modules.handlers.exception_handler
         def _mint():
             tx = self.contract.functions.mint(asset, amount, account.address).build_transaction({
                 'gas': 500000,
@@ -39,7 +39,7 @@ class HoneySwap(modules.module.Module):
 
 
     def reedem(self, account: web3.Account, asset: str, amount: int) -> None:
-        @modules.handlers.error_handler
+        @modules.handlers.exception_handler
         def _approve():
             honey_contract = modules.utility._get_contract(self.w3, settings.HONEY_ABI_PATH, settings.HONEY_ADDRESS)
             if honey_contract.functions.allowance(account.address, self.address).call() >= amount:
@@ -52,7 +52,7 @@ class HoneySwap(modules.module.Module):
             })
             self._send_tx_and_wait(account, tx)
         
-        @modules.handlers.error_handler
+        @modules.handlers.exception_handler
         def _mint():
             tx = self.contract.functions.redeem(asset, amount, account.address).build_transaction({
                 'gas': 500000,
