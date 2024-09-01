@@ -8,12 +8,12 @@ import modules.handlers
 
 class HoneySwap(modules.module.Module):
     def __init__(self, w3: web3.Web3):
-        super().__init__(w3, settings.HONEYSWAP_ADDRESS, settings.HONEYSWAP_ABI_PATH)
+        super().__init__(w3, settings.DAPPS["HONEYSWAP"]["ADDRESS"], settings.DAPPS["HONEYSWAP"]["ABI_PATH"])
 
     def mint(self, account: web3.Account, asset: str, amount: int) -> None:
         @modules.handlers.exception_handler
         def _approve():
-            usdc_contract = modules.utility._get_contract(self.w3, settings.USDC_ABI_PATH, settings.USDC_ADDRESS)
+            usdc_contract = modules.utility._get_contract(self.w3, settings.TOKENS["USDC"]["ABI_PATH"], settings.TOKENS["USDC"]["ADDRESS"])
             if usdc_contract.functions.allowance(account.address, self.address).call() >= amount:
                 return
             tx = usdc_contract.functions.approve(self.address, amount).build_transaction({
@@ -41,7 +41,7 @@ class HoneySwap(modules.module.Module):
     def reedem(self, account: web3.Account, asset: str, amount: int) -> None:
         @modules.handlers.exception_handler
         def _approve():
-            honey_contract = modules.utility._get_contract(self.w3, settings.HONEY_ABI_PATH, settings.HONEY_ADDRESS)
+            honey_contract = modules.utility._get_contract(self.w3, settings.TOKENS["HONEY"]["ABI_PATH"], settings.TOKENS["HONEY"]["ADDRESS"])
             if honey_contract.functions.allowance(account.address, self.address).call() >= amount:
                 return
             tx = honey_contract.functions.approve(self.address, amount).build_transaction({
