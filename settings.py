@@ -6,26 +6,43 @@ LOW_BERA_AMOUNT = 0.1
 
 BERA_DECIMALS = 18
 
-USDC_ADDRESS = "0xd6D83aF58a19Cd14eF3CF6fe848C9A4d21e5727c"
-
-USDC_ABI_PATH = "abis/core/USDC.json"
-
-HONEY_ADDRESS = "0x0E4aaF1351de4c0264C5c7056Ef3777b41BD8e03"
-
-HONEY_ABI_PATH = "abis/core/HONEY.json"
-
-USDC_DECIMALS = 6
-
 SHUFFLE_WALLETS = True
 
 TIME_DELAY_ROUTES = [30, 50]
 
-HONEYSWAP_ADDRESS = "0xAd1782b2a7020631249031618fB1Bd09CD926b31"
-
-HONEYSWAP_ABI_PATH = "abis/core/HoneyFactory.json"
 
 RPC_URL = "https://bartio.drpc.org"
 
 WALLETS_PATH = "private_keys.txt"
 
 RETRIES_COUNT = 2
+
+
+TOKENS = {
+    "USDC": {
+        "ADDRESS": "0xd6D83aF58a19Cd14eF3CF6fe848C9A4d21e5727c",
+        "ABI_PATH": "abis/core/USDC.json",
+        "DECIMALS": 6
+    },
+    "HONEY": {
+        "ADDRESS": "0x0E4aaF1351de4c0264C5c7056Ef3777b41BD8e03",
+        "ABI_PATH": "abis/core/HONEY.json",
+        "DECIMALS": 18,
+    },
+    "WBERA": {
+        "ADDRESS": "0x7507c1dc16935B82698e4C63f2746A2fCf994dF8",
+        "ABI_PATH": "abis/core/WBERA.json",
+        "DECIMALS": 18,
+    },
+}
+
+DAPPS = {
+    "BEX": {
+        "ADDRESS": "0x21e2C0AFd058A89FCf7caf3aEA3cB84Ae977B73D",
+        "ABI_PATH": "abis/bex/BeraCrocMultiSwap.json",
+    },
+    "HONEYSWAP": {
+        "ADDRESS": "0xAd1782b2a7020631249031618fB1Bd09CD926b31",
+        "ABI_PATH": "abis/core/HoneyFactory.json"
+    },
+}
