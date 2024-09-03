@@ -1,4 +1,5 @@
 import web3
+import web3.contract
 
 import typing
 import json
