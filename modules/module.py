@@ -12,7 +12,7 @@ class Module:
     def __init__(self, w3: web3.Web3, address: str, abi_path: str) -> None:
         self.w3: web3.Web3 = w3
         self.address: str = address
-        self.contract: web3.contract.Contract = modules.utility._get_contract(w3, abi_path, address)
+        self.contract: web3.contract.Contract = modules.utility._get_contract(w3, address, abi_path)
 
     @modules.handlers.exception_handler
     def _send_tx_and_wait(self, account: web3.Account, tx, message: str = "") -> None:
@@ -26,7 +26,7 @@ class Module:
             raise Exception
     
     def _approve(self, account: web3.Account, asset: str, amount: int) -> None:
-        contract = modules.utility._get_contract(self.w3, settings.TOKENS[asset]["ABI_PATH"], settings.TOKENS[asset]["ADDRESS"])
+        contract = modules.utility._get_contract(self.w3, asset, settings.TOKENS[asset]["ABI_PATH"])
         if contract.functions.allowance(account.address, self.address).call() >= amount:
             return
         tx = contract.functions.approve(self.address, amount).build_transaction({
