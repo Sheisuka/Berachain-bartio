@@ -34,6 +34,21 @@ TOKENS = {
         "ABI_PATH": "abis/core/WBERA.json",
         "DECIMALS": 18,
     },
+    "WBTC": {
+        "ADDRESS": "0x2577D24a26f8FA19c1058a8b0106E2c7303454a4",
+        "ABI_PATH": "abis/core/WBTC.json",
+        "DECIMALS": 8,
+    },
+    "WETH": {
+        "ADDRESS": "0xE28AfD8c634946833e89ee3F122C06d7C537E8A8",
+        "ABI_PATH": "abis/core/WETH.json",
+        "DECIMALS": 18,
+    },
+    "BGT": {
+        "ADDRESS": "0xbDa130737BDd9618301681329bF2e46A016ff9Ad",
+        "ABI_PATH": "abis/core/BGT.json",
+        "DECIMALS": 18,
+    },
 }
 
 DAPPS = {
@@ -45,4 +60,8 @@ DAPPS = {
         "ADDRESS": "0xAd1782b2a7020631249031618fB1Bd09CD926b31",
         "ABI_PATH": "abis/core/HoneyFactory.json"
     },
+    "BEND": {
+        "ADDRESS": "0x30A3039675E5b5cbEA49d9a5eacbc11f9199B86D",
+        "ABI_PATH": "abis/bend/Pool.json",
+    }
 }
