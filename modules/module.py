@@ -1,8 +1,10 @@
 import web3
+import web3.contract
+import web3.eth
 import web3.exceptions
 
-import logging
-
+import settings
+import modules.handlers
 import modules.utility
 
 
@@ -12,7 +14,8 @@ class Module:
         self.address: str = address
         self.contract: web3.contract.Contract = modules.utility._get_contract(w3, abi_path, address)
 
-    def _send_tx_and_wait(self, account, tx, message="") -> None:
+    @modules.handlers.exception_handler
+    def _send_tx_and_wait(self, account: web3.Account, tx, message: str = "") -> None:
         signed_tx = self.w3.eth.account.sign_transaction(tx, private_key=account.key)
         tx_hash = self.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
         tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=600)
@@ -21,3 +24,15 @@ class Module:
         else:
             print("пИЗДЕЦ")
             raise Exception
+    
+    def _approve(self, account: web3.Account, asset: str, amount: int) -> None:
+        contract = modules.utility._get_contract(self.w3, settings.TOKENS[asset]["ABI_PATH"], settings.TOKENS[asset]["ADDRESS"])
+        if contract.functions.allowance(account.address, self.address).call() >= amount:
+            return
+        tx = contract.functions.approve(self.address, amount).build_transaction({
+            'gas': 500000,
+            'nonce': self.w3.eth.get_transaction_count(account.address),
+            'maxFeePerGas': 200000000,
+            'maxPriorityFeePerGas': 100000000,
+        })
+        self._send_tx_and_wait(account, tx)
