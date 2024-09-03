@@ -19,33 +19,33 @@ RETRIES_COUNT = 2
 
 
 TOKENS = {
-    "USDC": {
-        "ADDRESS": "0xd6D83aF58a19Cd14eF3CF6fe848C9A4d21e5727c",
+    "0xd6D83aF58a19Cd14eF3CF6fe848C9A4d21e5727c": {
+        "TICKER": "USDC",
         "ABI_PATH": "abis/core/USDC.json",
         "DECIMALS": 6
     },
-    "HONEY": {
-        "ADDRESS": "0x0E4aaF1351de4c0264C5c7056Ef3777b41BD8e03",
+    "0x0E4aaF1351de4c0264C5c7056Ef3777b41BD8e03": {
+        "TICKER": "HONEY",
         "ABI_PATH": "abis/core/HONEY.json",
         "DECIMALS": 18,
     },
-    "WBERA": {
-        "ADDRESS": "0x7507c1dc16935B82698e4C63f2746A2fCf994dF8",
+    "0x7507c1dc16935B82698e4C63f2746A2fCf994dF8": {
+        "TICKER": "WBERA",
         "ABI_PATH": "abis/core/WBERA.json",
         "DECIMALS": 18,
     },
-    "WBTC": {
-        "ADDRESS": "0x2577D24a26f8FA19c1058a8b0106E2c7303454a4",
+    "0x2577D24a26f8FA19c1058a8b0106E2c7303454a4": {
+        "TICKER": "WBTC",
         "ABI_PATH": "abis/core/WBTC.json",
         "DECIMALS": 8,
     },
-    "WETH": {
-        "ADDRESS": "0xE28AfD8c634946833e89ee3F122C06d7C537E8A8",
+    "0xE28AfD8c634946833e89ee3F122C06d7C537E8A8": {
+        "TICKER": "WETH",
         "ABI_PATH": "abis/core/WETH.json",
         "DECIMALS": 18,
     },
-    "BGT": {
-        "ADDRESS": "0xbDa130737BDd9618301681329bF2e46A016ff9Ad",
+    "0xbDa130737BDd9618301681329bF2e46A016ff9Ad": {
+        "TICKER": "BGT",
         "ABI_PATH": "abis/core/BGT.json",
         "DECIMALS": 18,
     },
