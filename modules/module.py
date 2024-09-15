@@ -22,14 +22,14 @@ class Module:
         if tx_receipt.status == 1:
             print(f"Send tx https://bartio.beratrail.io/tx/0x{tx_hash.hex()}")
         else:
-            print("пИЗДЕЦ")
+            print("Some error")
             raise Exception
     
-    def _approve(self, account: web3.Account, asset: str, amount: int) -> None:
+    def _approve(self, account: web3.Account, asset: str, amount: int, address: str) -> None:
         contract = modules.utility._get_contract(self.w3, asset, settings.TOKENS[asset]["ABI_PATH"])
-        if contract.functions.allowance(account.address, self.address).call() >= amount:
+        if contract.functions.allowance(account.address, address).call() >= amount:
             return
-        tx = contract.functions.approve(self.address, amount).build_transaction({
+        tx = contract.functions.approve(address, amount).build_transaction({
             'gas': 500000,
             'nonce': self.w3.eth.get_transaction_count(account.address),
             'maxFeePerGas': 200000000,
